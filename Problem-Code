@@ -1,0 +1,40 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class TestClass {
+public static String ciB(int i, int l){
+        StringBuffer sb=new StringBuffer();
+     for(int j=l-1 ; j>=0 ; j--){
+      if((i&(1<<j))!=0)
+      sb.append(1);
+      else sb.append(0);
+     }
+    return sb.toString();
+    }
+    public static boolean palin(String s){
+    StringBuffer sb=new StringBuffer(s);
+    if(s.equals((sb.reverse()).toString()))
+    return true;
+    return false;
+    } 
+    public static void main(String args[] ) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int t=Integer.parseInt(br.readLine().trim());
+    while(t-->0){
+        String s = br.readLine().trim();
+        int count= 1;
+        int n=1<<(s.length());
+        for(int i=1 ; i<n ; i++){
+         String s1=ciB(i,s.length());
+         StringBuffer sb=new StringBuffer();
+         for(int j=0 ; j<s1.length() ; j++){
+          if(s1.charAt(j)=='1')
+          sb.append(s.charAt(j));
+         }
+         if(palin(sb.toString()))
+         count++;
+        }
+     System.out.println(count);
+     }
+    }
+}
